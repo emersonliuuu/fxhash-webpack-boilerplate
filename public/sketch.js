@@ -7,7 +7,7 @@ function drawFlower(clr, size = 1, _scale) {
   ellipse(0, 0, 2.5 * _scale);
   ellipseMode(CORNER);
 
-  let peroid = 10;
+  let peroid = 10; // # of beam
   scale(_scale);
   for (var i = 0; i < peroid; i++) {
     ellipse(1.5, -0.5, 7.5 * size, 1);
@@ -17,9 +17,11 @@ function drawFlower(clr, size = 1, _scale) {
   pop();
 }
 
+// determine color to render
 function calColor(clr, threshold_1, threshold_2) {
   colorMode(RGB);
   let inter;
+  // color between 0 to threshold 1
   if (frameCount < threshold_1) {
     inter = frameCount / threshold_1;
     return color(
@@ -27,14 +29,18 @@ function calColor(clr, threshold_1, threshold_2) {
       clr[0][1] + inter * (clr[1][1] - clr[0][1]),
       clr[0][2] + inter * (clr[1][2] - clr[0][2])
     );
-  } else if (frameCount < threshold_2) {
+  }
+  // color between threshold 1 to threshold 2
+  else if (frameCount < threshold_2) {
     inter = (threshold_2 - frameCount) / (threshold_2 - threshold_1);
     return color(
       clr[1][0] + inter * (clr[2][0] - clr[1][0]),
       clr[1][1] + inter * (clr[2][1] - clr[1][1]),
       clr[1][2] + inter * (clr[2][2] - clr[1][2])
     );
-  } else {
+  }
+  // above threshold 2
+  else {
     return clr[2];
   }
 }
