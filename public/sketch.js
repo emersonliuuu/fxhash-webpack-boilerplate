@@ -7,7 +7,7 @@ let colors = "0c0a3e-7b1e7a-b33f62-f9564f-f3c677"
 
 // Dynamic display
 function setup() {
-  createCanvas(windowWidth, windowHeight);
+  createCanvas(windowWidth * 0.9, windowHeight * 0.9);
   background(0);
 }
 
